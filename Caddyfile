@@ -1,0 +1,10 @@
+{
+    default_sni {$VIRTUAL_HOST}
+}
+
+{$VIRTUAL_HOST} {
+    tls {$TLS}
+    redir / /guacamole/
+    reverse_proxy /* http://guacamole:8080
+    reverse_proxy /auth/* http://keycloak:8080
+}
