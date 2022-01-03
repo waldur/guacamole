@@ -8,10 +8,10 @@ def create_desktop(hostname, client):
         	name = hostname,
 	        offering = os.environ.get('BACKEND_WALDUR_OFFERING'),
 	        project = os.environ.get('BACKEND_WALDUR_PROJECT'),
-		image = os.environ.get('BACKEND_WALDUR_IMAGE'),
+			image = os.environ.get('BACKEND_WALDUR_IMAGE'),
 	        system_volume_size = 10,
 	        flavor = os.environ.get('BACKEND_WALDUR_FLAVOR'),
-	        ssh_key = os.environ.get('BACKEND_WALDUR_SSHKEY'),
+#	        ssh_key = os.environ.get('BACKEND_WALDUR_SSHKEY'),
 		security_groups = ["RDP Allowlist", "default"],
 	        networks = [{"subnet": os.environ.get('BACKEND_WALDUR_SUBNET'), "floating_ip": ""}]
         )
