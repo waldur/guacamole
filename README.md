@@ -11,6 +11,10 @@ This integration provides full virtual desktop lifecycle, including:
  ## Quick Start Guide
 
 - Make sure your Waldur is able to run custom scripts
+- Modify Guacamole MySQL database to store backend ID (Backend Waldur resource ID):
+```sql
+ALTER TABLE guacamole_connection ADD backend_id VARCHAR(50);
+```
 - Create a Service Offerring in Waldur with "Custom Script" type
 - Configure environment variables for the service:
 
