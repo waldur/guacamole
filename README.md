@@ -10,9 +10,9 @@ This integration provides full virtual desktop lifecycle, including:
 
  ## Quick Start Guide
 
-1. Make sure your Waldur is able to run custom scripts
-1. Create a Service Offerring in Waldur with "Custom Script" type
-1. Configure environment variables for the service:
+- Make sure your Waldur is able to run custom scripts
+- Create a Service Offerring in Waldur with "Custom Script" type
+- Configure environment variables for the service:
 
 ```bash
 # Guacamole MySQL connection settings
@@ -32,4 +32,4 @@ BACKEND_WALDUR_FLAVOR=flavor_name
 BACKEND_WALDUR_SUBNET=subnet_uuid
 ```
 
-1. Copy `custom-scripts/create.py` and `custom-scripts/terminate.py` as the creation and termination scripts for the service
+- Copy `custom-scripts/create.py` and `custom-scripts/terminate.py` as the creation and termination scripts for the service
