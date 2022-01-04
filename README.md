@@ -30,6 +30,7 @@ BACKEND_WALDUR_PROJECT=project_uuid
 BACKEND_WALDUR_IMAGE=image_name
 BACKEND_WALDUR_FLAVOR=flavor_name
 BACKEND_WALDUR_SUBNET=subnet_uuid
+BACKEND_WALDUR_SECURITY_GROUP=security_group_name
 ```
 
 - Copy `custom-scripts/create.py` and `custom-scripts/terminate.py` as the creation and termination scripts for the service
