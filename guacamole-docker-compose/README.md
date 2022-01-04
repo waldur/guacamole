@@ -1,14 +1,30 @@
 # Guacamole Docker-compose deployment
 
+A bundle of guacamole, MySQL and Caddy for running a production grade Guacamole installation.
+This setup is being pre-configure with Keycloak OpenID Connect authentication.
+
+List of services:
+ - MySQL
+ - Guacamole (web client)
+ - Guacd (remote desktop proxy)
+ - Caddy (HTTP TLS proxy)
+
 ## Prerequisites
 
 - at least 4GB RAM on Docker Host to run all containers
 - Docker v1.13+
 
-## Logs
+## Quick Start Guide
 
-Logs emitted by the containers are collected and saved in the `waldur_logs` folder. You can change the location by
-editing environment variable (`.env`) and updating `LOG_FOLDER` value.
+ - Configure Keycloak realm and create a client without secret key and with implicit flow enabled
+ - Copy `env.example` to `.env` and fill in all empty variables
+ - Start docker-compose services:
+
+```bash
+ docker-compose up -d
+```
+
+ - Initialize the guacamole MySQL database as mentioned at https://guacamole.apache.org/doc/gug/guacamole-docker.html
 
 ## Using TLS
 
