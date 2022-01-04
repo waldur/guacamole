@@ -57,7 +57,7 @@ def main():
 	print("Created instance with uuid {}".format(instance_uuid))
 
 	instance = waldur_backend.get_instance_via_marketplace(instance_uuid, os.environ.get('BACKEND_WALDUR_PROJECT'))
-	insert_to_guacamole_db(instance_uuid, attributes['name'], attributes['Email'], instance['internal_ips'][0], cursor)
+	insert_to_guacamole_db(instance_uuid, attributes['name'], os.environ.get('CREATOR_EMAIL'), instance['internal_ips'][0], cursor)
 	print("Added guacamole record for the instance")
 	print(instance_uuid)
 
