@@ -4,17 +4,20 @@ Guacamole is a browser based remote desktop gateway. It supports standard protoc
 Waldur — Guacamole integration is based on Waldur's custom scripts functionality.
 
 This integration provides full virtual desktop lifecycle, including:
- - Creation of a virtual desktop in remote Waldur (i.e. OpenStack KVM machine)
- - Adding records of a freshly created virtual desktop to Guacamole MySQL database
- - Termination of the virtual desktop and MySQL records removal upon desktop deletion
 
- ## Quick Start Guide
+- Creation of a virtual desktop in remote Waldur (i.e. OpenStack KVM machine)
+- Adding records of a freshly created virtual desktop to Guacamole MySQL database
+- Termination of the virtual desktop and MySQL records removal upon desktop deletion
+
+## Quick Start Guide
 
 - Make sure your Waldur is able to run custom scripts
 - Modify Guacamole MySQL database to store backend ID (Backend Waldur resource ID):
+
 ```sql
 ALTER TABLE guacamole_connection ADD backend_id VARCHAR(50);
 ```
+
 - Create a Service Offerring in Waldur with "Custom Script" type
 - Configure environment variables for the service:
 
