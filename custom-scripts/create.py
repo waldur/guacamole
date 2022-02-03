@@ -1,5 +1,6 @@
 import os
 import json
+import re
 
 import pymysql
 from waldur_client import WaldurClient
@@ -78,7 +79,8 @@ def main():
         os.environ.get("BACKEND_WALDUR_URL"), os.environ.get("BACKEND_WALDUR_TOKEN")
     )
 
-    attributes = json.loads(os.environ.get("ATTRIBUTES").replace("'", '"'))
+    attributes = json.loads(os.environ.get("ATTRIBUTES"))
+    desktop_name = re.sub('[^A-Za-z0-9]+', '', attributes["name"])
 
     db = pymysql.connect(
         host=os.environ.get("MYSQL_HOSTNAME"),
@@ -90,7 +92,7 @@ def main():
     cursor = db.cursor(pymysql.cursors.DictCursor)
     print("Connected to Guacamole MySQL at {}".format(os.environ.get("MYSQL_HOSTNAME")))
 
-    instance_uuid = create_desktop(attributes["name"], waldur_backend)
+    instance_uuid = create_desktop(desktop_name, waldur_backend)
     print("Created instance with uuid {}".format(instance_uuid))
 
     instance = waldur_backend.get_instance_via_marketplace(
@@ -98,7 +100,7 @@ def main():
     )
     insert_to_guacamole_db(
         instance_uuid,
-        attributes["name"],
+        desktop_name,
         os.environ.get("CREATOR_EMAIL"),
         instance["internal_ips"][0],
         cursor,
