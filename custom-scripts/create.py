@@ -43,7 +43,7 @@ def insert_to_guacamole_db(instance_uuid, name, email, ip, cursor):
     connection_id = cursor.lastrowid
 
     cursor.execute(
-        "insert into guacamole_connection_parameter (connection_id, parameter_name, parameter_value) values \
+        "INSERT INTO guacamole_connection_parameter (connection_id, parameter_name, parameter_value) VALUES \
 		({}, 'hostname', '{}'), \
 		({}, 'ignore-cert', 'true'), \
 		({}, 'username', 'user'), \
@@ -66,9 +66,17 @@ def insert_to_guacamole_db(instance_uuid, name, email, ip, cursor):
         )
     )
 
+    # Ignore error if user already exists
     cursor.execute(
-        "insert into guacamole_connection_permission (entity_id, connection_id, permission) values \
-		((select entity_id from guacamole_entity where name='{}'), {}, 'READ')".format(
+        "INSERT IGNORE INTO guacamole_user (entity_id, password_hash, password_date) VALUES \
+        ((SELECT entity_id FROM guacamole_entity WHERE name='{}'), '', CURDATE())".format(
+            email
+        )
+    )
+
+    cursor.execute(
+        "INSERT INTO guacamole_connection_permission (entity_id, connection_id, permission) VALUES \
+		((SELECT entity_id FROM guacamole_entity WHERE name='{}'), {}, 'READ')".format(
             email, connection_id
         )
     )
