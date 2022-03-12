@@ -14,7 +14,7 @@ def create_desktop(hostname, client):
         image=os.environ.get("BACKEND_WALDUR_IMAGE"),
         system_volume_size=10,
         flavor=os.environ.get("BACKEND_WALDUR_FLAVOR"),
-        # ssh_key = os.environ.get('BACKEND_WALDUR_SSHKEY'),  # enable if required to inject a management key into VM
+        ssh_key = os.environ.get('BACKEND_WALDUR_SSHKEY'),  # enable if required to inject a management key into VM
         security_groups=[os.environ.get("BACKEND_WALDUR_SECURITY_GROUP"), "default"],
         networks=[
             {"subnet": os.environ.get("BACKEND_WALDUR_SUBNET"), "floating_ip": ""}
